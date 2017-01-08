@@ -1,0 +1,10 @@
+# Emacs temporary files
+*~
+\#*#
+
+# Log files
+*.log
+logs/
+
+# result directory
+Export/
