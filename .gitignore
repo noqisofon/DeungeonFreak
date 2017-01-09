@@ -2,9 +2,9 @@
 *~
 \#*#
 
-# Log files
+# log files
 *.log
 logs/
 
-# result directory
-Export/
+# build result directory
+export/
