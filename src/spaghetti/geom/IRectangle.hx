@@ -4,7 +4,7 @@ package spaghetti.geom;
 /*!
  *
  */
-interface IRectangle implements IPointable implements ISizable {
+interface IRectangle extends IPointable extends ISizable {
 }
 
 // Local Variables:

@@ -5,7 +5,7 @@ package spaghetti.geom;
  *
  */
 interface ISizable {
-    var width : Int;
+    var width  : Int;
     var height : Int;
 }
 

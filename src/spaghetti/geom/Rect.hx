@@ -54,21 +54,21 @@ class Rect implements IRectangle {
      *
      */
     public function get_topRight() : Point {
-        return new Point( this.right this.top );
+        return new Point( this.right, this.top );
     }
 
     /*!
      *
      */
     public function get_bottomLeft() : Point {
-        return new Point( this.right this.bottom );
+        return new Point( this.right, this.bottom );
     }
 
     /*!
      *
      */
     public function get_bottomRight() : Point {
-        return new Point( this.right this.bottom );
+        return new Point( this.right, this.bottom );
     }
 
     /*!

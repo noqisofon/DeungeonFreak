@@ -1,57 +1,65 @@
 package spaghetti.core;
 
 import haxe.ds.Vector;
+import spaghetti.geom.Point;
+import spaghetti.geom.Size;
+import spaghetti.geom.Rect;
 
 
 /*!
  *
  */
-class Array2D<T> {
+class Array2D<T> implements IArray2D<T> {
     /*!
      *
      */
     public function new(width : Int, height : Int) {
-        this.width  = width;
-        this.height = height;
+        width_      = width;
+        height_     = height;
 
-        values_     = new Vector( width * height );
-        pointCache_ = new ObjectMap();
+        values_     = new Vector<T>( width * height );
+        // point_cache_ = new ObjectMap();
     }
 
     /*!
      *
      */
-    public static withSize(a_size : Size) {
-        return new Array2D( a_size.width, a_size.height );
+    public static function withSize<A>(a_size : Size) : Array2D<A> {
+        return new Array2D<A>( a_size.width, a_size.height );
     }
 
-    /*!
-     *
-     */
-    public function get_size() : Size {
-        return new Size( this.width, this.height );
-    }
+    public var          width  (get, never) : Int;
+    public function get_width()             : Int { return width_; }
 
-    /*!
-     *
-     */
-    public function get_bounds() : Rect {
-        return new Rect( 0, 0, this.width, this.height );
-    }
+    public var          height (get, never) : Int;
+    public function get_height()            : Int { return height_; }
 
+    public var          size   (get, never) : Size;
+    public function get_size()              : Size { return new Size( this.width, this.height ); }
+    
+    public var          bounds (get, never) : Rect;
+    public function get_bounds()            : Rect { return new Rect( 0, 0, this.width, this.height ); }
+    
     /*!
+     * 
      *
-     */
-    @:arrayAccess
-    public inline function at(x : Int, y : Int) : T {
+     * \param x
+     * \param y
+     *
+     * \return 
+     */ 
+    public function at(x : Int, y : Int) : Null<T> {
         return values_[calcIndex( x, y )];
     }
     
     /*!
-     *
-     */
-    @:arrayAccess
-    public inline function put(x : Int, y : Int, value : T) : Void {
+     * 
+     * 
+     * \param x
+     * \param y
+     * \param value
+     */ 
+    public function put(x : Int, y : Int, value : T) : Void {
         values_[calcIndex( x, y )] = value;
     }
 
@@ -59,7 +67,7 @@ class Array2D<T> {
      *
      */
     public function fill(value : T) : Void {
-        for ( index in 0..values_.length ) {
+        for ( index in 0...values_.length ) {
             values_[index] = value;
         }
     }
@@ -68,7 +76,7 @@ class Array2D<T> {
      *
      */
     public function fillMap(callback : Point -> T) : Void {
-        for ( index in 0..values_.length ) {
+        for ( index in 0...values_.length ) {
             values_[index] = callback( indexToPoint( index ) );
         }
     }
@@ -85,26 +93,22 @@ class Array2D<T> {
      */
     private function indexToPoint(index : Int) : Point {
         var a_point : Point;
-        // if ( pointCache_.exists( index ) ) {
-        //     a_point = pointCache_.get( index );
+        // if ( point_cache_.exists( index ) ) {
+        //     a_point = point_cache_.get( index );
         // } else {
         var x = index % width;
         var y = Math.floor( index / height );
         
         a_point = new Point( x, y );
-        pointCache_.set( index, a_point );
+        // point_cache_.set( index, a_point );
         // }
         return a_point;
     }
 
-    public var width  (default, never) : Int;
-    public var height (default, never) : Int;
-
-    public var size   (get, never) : Size;
-    public var bounds (get, never) : Rect;
-
-    private var values_     : Array<T>;
-    // private var pointCache_ : Map<Int, Point>;    
+    private var width_      : Int;
+    private var height_     : Int;
+    private var values_     : Vector<T>;
+    // private var point_cache_ : Map<Int, Point>;    
 }
 
 // Local Variables:

@@ -1,5 +1,6 @@
 package spaghetti.core;
 
+import haxe.Int64;
 import haxe.io.Bytes;
 import haxe.io.BytesBuffer;
 
@@ -54,7 +55,7 @@ class Random {
      *
      */
     public static function getDefault() : Random {
-        return new Random( Math.floor( Sys.time() * 1000.0 ) );
+        return new Random( Env.getTickCount() );
     }
 
     /*!
@@ -186,3 +187,7 @@ class Random {
     private static inline var MSEED : Int =  161803398;
     private static inline var MZ    : Int =          0;
 }
+
+// Local Variables:
+//   coding: utf-8
+// End:
