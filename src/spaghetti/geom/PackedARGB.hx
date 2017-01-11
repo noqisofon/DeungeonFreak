@@ -4,7 +4,7 @@ package spaghetti.geom;
 /*!
  *
  */
-abstract PackedColor(Int) from Int to Int {
+abstract PackedARGB(Int) from Int to Int {
     /*!
      *
      */

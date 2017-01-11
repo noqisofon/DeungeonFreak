@@ -46,8 +46,8 @@ class Color {
     /*!
      *
      */
-    public function toArgb() : PackedColor {
-        return PackedColor( this.red, this.green, this.blue, this.alpha );
+    public function toArgb() : PackedARGB {
+        return PackedARGB( this.red, this.green, this.blue, this.alpha );
     }
 }
 
