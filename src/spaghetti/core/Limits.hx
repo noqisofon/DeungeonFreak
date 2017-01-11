@@ -1,7 +1,7 @@
 package spaghetti.core;
 
 
-class Limits {
+extern class Limits {
     public inline static var INT_MIN  : Int = -2147483646;
     public inline static var INT_MAX  : Int =  2147483647;
 

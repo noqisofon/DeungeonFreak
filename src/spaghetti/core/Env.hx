@@ -20,7 +20,7 @@ class Env {
 
         var parts = line.split( " " );
 
-        return Math.floor( Std.parseFloat( parts[0] ) * 1000.0);
+        return Math.floor( Std.parseFloat( parts[0] ) * 1000.0 );
 #end
     }
 }

@@ -83,15 +83,19 @@ class Rect implements IRectangle {
      */
     public function contains(x : Int, y : Int) : Bool {
         if ( x < this.x ) {
+
             return false;
         }
         if ( x >= this.right ) {
+
             return false;
         }
         if ( y < this.y ) {
+
             return false;
         }
         if ( y >= this.bottom ) {
+
             return false;
         }
         return true;
@@ -109,15 +113,19 @@ class Rect implements IRectangle {
      */
     public function containsRect(other : Rect) : Bool {
         if ( other.left < this.left ) {
+
             return false;
         }
         if ( other.right > this.right ) {
+
             return false;
         }
         if ( other.top < this.top ) {
+
             return false;
         }
         if ( other.bottom > this.bottom ) {
+
             return false;
         }
         return true;
@@ -128,15 +136,19 @@ class Rect implements IRectangle {
      */
     public function overlaps(other : Rect) : Bool {
         if ( this.left > other.right ) {
+
             return false;
         }
         if ( this.right < other.left ) {
+
             return false;
         }
         if ( this.top > other.bottom ) {
+
             return false;
         }
         if ( this.bottom < other.top ) {
+
             return false;
         }
         return true;
