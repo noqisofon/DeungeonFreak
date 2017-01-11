@@ -5,7 +5,7 @@ package spaghetti.geom;
  *
  */
 @:enum
-abstract KnownColor(Int) {
+abstract KnownColor(Int) from Int to PackedARGB {
     var AliceBlue = 0xfff0f8ff;
     var AntiqueWhite = 0xfffaebd7;
     var Aqua = 0xff00ffff;

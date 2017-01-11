@@ -34,6 +34,37 @@ class RandomTest extends TestCase {
             assertTrue( n < 2147483647 );
         }
     }
+
+    public function testCycle() {
+        print( "\n" );
+        print( "testCycle() :\n" );
+        var random = Random.getDefault();
+
+        var map : Map<Int, Int> = new Map();
+
+        for ( unused in 0...1000 ) {
+            var n = random.next();
+
+            var hoge = map[n];
+            if ( hoge == null ) {
+                hoge = 1;
+            } else {
+                // 同じ数が来ると、1 増やします。
+                ++ hoge;
+            }
+            map[n]   = hoge;
+        }
+
+        var all_one = 0;
+        for ( key in map.keys() ) {
+            // print( '    $key => ${map[key]}\n' );
+            if ( map[key] == 1 ) {
+                ++ all_one;
+            }
+        }
+
+        assertEquals( 1000, all_one );
+    }
 }
 
 // Local Variables:

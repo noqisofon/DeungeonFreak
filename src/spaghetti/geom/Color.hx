@@ -16,6 +16,16 @@ class Color {
     }
 
     /*!
+     *
+     */
+    public static function fromColorValue(a_color_value : ColorValue) : Color {
+        return new Color( Math.floor( a_color_value.red   * 255 ),
+                          Math.floor( a_color_value.green * 255 ),
+                          Math.floor( a_color_value.blue  * 255 ),
+                          Math.floor( a_color_value.alpha * 255 ) );
+    }
+
+    /*!
      * 0xaarrggbb
      */
     public static function fromARGB(packed_color : Int) : Color {
@@ -23,10 +33,10 @@ class Color {
         if ( color_cache__.exists( packed_color ) ) {
             a_color = color_cache__.get( packed_color );
         } else {
-            var alpha =  this >>> 24;
-            var red   = (this >>> 16) & 0xff;
-            var green = (this >>>  8) & 0xff;
-            var blue  =  this         & 0xff;
+            var alpha =  packed_color >>> 24;
+            var red   = (packed_color >>> 16) & 0xff;
+            var green = (packed_color >>>  8) & 0xff;
+            var blue  =  packed_color         & 0xff;
  
             a_color = new Color( red, green, blue, alpha );
 
@@ -35,21 +45,55 @@ class Color {
         return a_color;
     }
 
-    public var red    (get, set) : Int;
-    public var green  (get, set) : Int;
-    public var blue   (get, set) : Int;
-    public var alpha  (get, set) : Int;
+    public var red    (default, default) : Int;
+    public var green  (default, default) : Int;
+    public var blue   (default, default) : Int;
+    public var alpha  (default, default) : Int;
 
-    public static var          black (get, never) : Color;
-    public static function get_black()            : Color { return Color.from( 0x00000000 ); }
+    /*!
+     *
+     */
+    public function equals(other : Color) : Bool {
+        return this.red == other.red &&
+            this.green == other.green &&
+            this.blue == other.blue &&
+            this.alpha == other.alpha;
+    }
 
     /*!
      *
      */
     public function toArgb() : PackedARGB {
-        return PackedARGB( this.red, this.green, this.blue, this.alpha );
+        return new PackedARGB( this.red, this.green, this.blue, this.alpha );
     }
+
+    /*!
+     *
+     */
+    public function toString() {
+        return 'rgba( ${this.red}, ${this.green}, ${this.blue}, ${this.alpha} )';
+    }
+
+    private static var color_cache__ : Map<Int, Color>;
 }
+
+// abstract EqualityColor(Color) to Color {
+//     /*!
+//      *
+//      */
+//     @:op(A == B)
+//     public static function equals(left : EqualityColor, right : EqualityColor) : Bool {
+//         return left.equals( right );
+//     }
+
+//     /*!
+//      *
+//      */
+//     @:op(A != B)
+//     public static function nequals(left : EqualityColor, right : EqualityColor) : Bool {
+//         return !left.equals( right );
+//     }
+// }
 
 // Local Variables:
 //   coding: utf-8

@@ -8,14 +8,14 @@ abstract PackedARGB(Int) from Int to Int {
     /*!
      *
      */
-    public inline function new(red = 0, green = 0, blue = 0, alpha = 0) {
-        this = ( alpha << 24 ) | ( red << 16 ) | ( green << 8 ) | b;
+    public inline function new(red = 0, green = 0, blue = 0, alpha = 255) {
+        this = ( alpha << 24 ) | ( red << 16 ) | ( green << 8 ) | blue;
     }
 
     /*!
      *
      */
-    public function ToColor() {
+    public function toColor() {
         var alpha =  this >>> 24;
         var red   = (this >>> 16) & 0xff;
         var green = (this >>>  8) & 0xff;
