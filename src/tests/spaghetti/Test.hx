@@ -10,8 +10,9 @@ class Test {
         var runner = new TestRunner();
 
         runner.add( new Array2DTest() );
-        runner.add( new RandomTest() );
         runner.add( new EnvTest() );
+        runner.add( new EqualityTest() );
+        runner.add( new RandomTest() );
 
         runner.add( new ColorTest() );
 

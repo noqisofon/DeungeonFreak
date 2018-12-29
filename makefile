@@ -1,6 +1,6 @@
 .PHONY : build
 build:
-	haxe -cp ./src -main dungeonfreak.app.Main -neko ./export/dungeonfreak.n
+	haxe -cp ./src -main dungeonfreak.app.Main -cs ./export/dungeonfreak
 
 .PHONY : test
 test: spaghetti-test
